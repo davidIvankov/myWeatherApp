@@ -37,7 +37,9 @@ req.onload = function(){
   const json = JSON.parse(req.responseText);
   currTime = json.dt
   sunSet = json.sys.sunset
- if (currTime > sunSet){
+  sunRise = json.sys.sunrise
+  console.log(sunRise)
+ if (currTime > sunSet || currTime < sunRise){
    main.style.backgroundImage = "url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80')"
    main.style.color="white"
  }else{
@@ -45,7 +47,6 @@ req.onload = function(){
    
  }
   city= json.name
-  console.log(currTime)
   country = json.sys.country
   temp = json.main.temp
   weather = json.weather[0].main
